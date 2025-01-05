@@ -1,31 +1,23 @@
-"use client";
+import TrendingCompanyList from './components/TrendingCompanyList';
 
-import { Inter } from "@next/font/google";
-import { useEffect, useState } from "react";
-const inter = Inter({ subsets: ["latin"] });
-
-export default function Home() {
-  const [stuff1, setStuff1] = useState<any>([]);
-  useEffect(() => {
-    // declare the data fetching function
-    const fetchData = async () => {
-      const data = await fetch("/api/companies");
-      const data2 = await data.json();
-      console.log(data2);
-      setStuff1(data2);
-    };
-
-    // call the function
-    fetchData()
-      // make sure to catch any error
-      .catch(console.error);
-  }, []);
-
+/**
+ * Represents the main homepage where trending companies are displayed.
+ * Uses the TrendingCompanyList component to list the companies.
+ */
+export default function CompanyOverviewPage() {
   return (
-    <main>
-      <h2 className={inter.className}>Quartr</h2>
-      <p className={inter.className}>Trending companies</p>
-      <p>{JSON.stringify(stuff1)}</p>
+    <main className="bg-light mx-auto max-w-2xl p-6 shadow-md">
+      <header>
+        <h2
+          className="text-lg text-gray-400"
+          aria-label="Trending Companies Section"
+        >
+          Trending companies
+        </h2>
+      </header>
+      <section>
+        <TrendingCompanyList />
+      </section>
     </main>
   );
 }
